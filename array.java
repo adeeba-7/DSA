@@ -8,15 +8,29 @@ public class array {
     }
 
     // Add an element to the end of the array
-    public void insert(int element) {
+    public void insertfirst(int element) {
+        int index=0;
         if (size < arr.length) {
-            arr[size] = element;
+            for (int i = size; i > index; i--) {
+                arr[i] = arr[i - 1];
+            }
+            arr[index] = element;
             size++;
         } else {
             // You can implement resizing logic here if needed
             System.out.println("Array is full. Cannot add more elements.");
         }
     }
+
+    public void insertLast(int element) {
+        if (size < arr.length) {
+            arr[size] = element;
+            size++;
+        } else {
+            System.out.println("Array is full. Cannot insert at the last position.");
+        }
+    }
+
     public void insertPOS(int element, int index) {
         if (index < 0 || index > size || size == arr.length) {
             System.out.println("Invalid index or array is full.");
@@ -41,6 +55,22 @@ public class array {
         }
     }
 
+    public void deleteFirst() {
+        if (size > 0) {
+            delete(0);
+        } else {
+            System.out.println("Array is empty. Nothing to delete.");
+        }
+    }
+
+    public void deleteLast() {
+        if (size > 0) {
+            delete(size - 1);
+        } else {
+            System.out.println("Array is empty. Nothing to delete.");
+        }
+    }
+
     // Get the size of the array
     public int size() {
         return size;
@@ -57,10 +87,10 @@ public class array {
     public static void main(String[] args) {
         array customArray = new array(5);
 
-        customArray.insert(10);
-        customArray.insert(20);
-        customArray.insert(30);
-        customArray.insert(40);
+        customArray.insertfirst(10);
+        customArray.insertLast(20);
+        customArray.insertfirst(30);
+        customArray.insertLast(40);
         customArray.insertPOS(60, 2);
 
         customArray.display(); // Output: 10 20 60 30 40
